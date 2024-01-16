@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable no-unused-vars */
+import React from "react";
+import Welcome from "./pages/Welcome";
+import Login from "./pages/Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Main from "./components/Main";
+import Member from "./components/Member";
+import Visitor from "./components/Visitor";
+import AttendanceLogs from "./components/AttendanceLogs";
+import SheetReport from "./components/SheetReport";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="/dashboard" element={<Main />} />
+            <Route path="/dashboard/member" element={<Member />} />
+            <Route path="/dashboard/visitor" element={<Visitor />} />
+            <Route path="/dashboard/attendance" element={<AttendanceLogs />} />
+            <Route path="/dashboard/memberReport" element={<SheetReport/>} />
+          </Route>
+        </Routes>
+      </Router>
+    </>
   );
 }
 
