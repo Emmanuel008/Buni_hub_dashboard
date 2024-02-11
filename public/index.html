@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/buni.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -49,7 +49,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Buni Dashboard</title>
   </head>
   <body class="hold-transition sidebar-mini layout-fixed">
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -92,7 +92,7 @@
   <script src="%PUBLIC_URL%/plugins/summernote/summernote-bs4.min.js"></script>
   <!-- overlayScrollbars -->
   <script src="%PUBLIC_URL%/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <script src="%PUBLIC_URL%/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="%PUBLIC_URL%/plugins/datatables/jquery.dataTables.js"></script>
 <script src="%PUBLIC_URL%/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="%PUBLIC_URL%/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="%PUBLIC_URL%/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
@@ -114,7 +114,9 @@
   $(function () {
     $("#example1").DataTable({
       "ordering": true,
-      "responsive": true, "lengthChange": false, "autoWidth": false, 
+      stateLoadParams: true,
+      "searching": true,
+      "responsive": true, "lengthChange": true, "autoWidth": false, 
       "buttons": ["copy", "excel", "pdf",  "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({

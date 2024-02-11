@@ -49,9 +49,9 @@ const Sidebar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/dashboard/memberReport" className="nav-link">
-                  <i className="nav-icon ion ion-calendar" />
-                  <p>Sheet Report</p>
+                <a href="/dashboard/settings" className="nav-link">
+                  <i className="nav-icon fa fa-cog"/>
+                  <p>Settings</p>
                 </a>
               </li>
             </ul>

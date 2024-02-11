@@ -27,15 +27,11 @@ const Header = () => {
           </a>
           <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <a href="#" className="dropdown-item">
-              <a class="dropdown-item" href="#">
-                <i class="fa fa-unlock-alt m-r-5"></i> Lock screen
-              </a>
+                <i className="fa fa-unlock-alt m-r-5"></i> Lock screen
             </a>
             <div className="dropdown-divider" />
             <a href="#" className="dropdown-item text-danger">
-              <a class="dropdown-item" href="#">
-                <i class="fa fa-power-off m-r-5"></i> LogOut
-              </a>
+                <i className="fa fa-power-off m-r-5"></i> LogOut
             </a>
           </div>
         </li>

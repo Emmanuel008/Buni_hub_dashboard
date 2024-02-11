@@ -1,7 +1,51 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 
 const Main = () => {
+  const [visitorNumber, setVistorNumber] = useState(0);
+  const [memberrNumber, setMemberNumber] = useState(0);
+
+  useEffect(() => {
+    const fetch = async () =>{
+      try {
+        await axios
+          .get("http://localhost:8081/api/member/getNumber")
+          .then((res) => {
+            setMemberNumber(res.data)
+          });
+      } catch (error) {
+        Error.fire({
+          icon: "error",
+          title: error.message,
+        });
+      }
+    }
+    fetch()
+  }, [])
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        await axios
+          .get("http://localhost:8081/api/visitor/getNumber")
+          .then((res) => {
+            setVistorNumber(res.data)
+          });
+      } catch (error) {
+        Error.fire({
+          icon: "error",
+          title: error.message,
+        });
+      }
+      
+    };
+    fetch();
+  }, []);
+  
+
   return (
     <div className="content-wrapper">
       <div className="content-header">
@@ -17,60 +61,32 @@ const Main = () => {
       <section className="content">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-3 col-6">
+            <div className="col-lg-6 col-6">
               <div className="small-box bg-info">
                 <div className="inner">
-                  <h3>150</h3>
+                  <h3>{memberrNumber}</h3>
                   <p>TOTAL MEMBERS</p>
                 </div>
                 <div className="icon">
                   <i className="ion ion-ios-person-outline" />
                 </div>
-                <a href="#" className="small-box-footer">
+                {/* <a href="#" className="small-box-footer">
                   More info <i className="fas fa-arrow-circle-right" />
-                </a>
+                </a> */}
               </div>
             </div>
-            <div className="col-lg-3 col-6">
-              <div className="small-box bg-success">
-                <div className="inner">
-                  <h3>150</h3>
-                  <p>ON TIME TODAY</p>
-                </div>
-                <div className="icon">
-                  <i className="ion ion-android-alarm-clock" />
-                </div>
-                <a href="#" className="small-box-footer">
-                  More info <i className="fas fa-arrow-circle-right" />
-                </a>
-              </div>
-            </div>
-            <div className="col-lg-3 col-6">
-              <div className="small-box bg-danger">
-                <div className="inner">
-                  <h3>150</h3>
-                  <p>LATE TODAY</p>
-                </div>
-                <div className="icon">
-                  <i className="ion ion-alert-circled" />
-                </div>
-                <a href="#" className="small-box-footer">
-                  More info <i className="fas fa-arrow-circle-right" />
-                </a>
-              </div>
-            </div>
-            <div className="col-lg-3 col-6">
+            <div className="col-lg-6 col-6">
               <div className="small-box bg-warning">
                 <div className="inner">
-                  <h3>150</h3>
+                  <h3>{visitorNumber}</h3>
                   <p>VISTORS TODAY</p>
                 </div>
                 <div className="icon">
                   <i className="ion ion-person-add" />
                 </div>
-                <a href="#" className="small-box-footer">
+                {/* <a href="#" className="small-box-footer">
                   More info <i className="fas fa-arrow-circle-right" />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -81,3 +97,15 @@ const Main = () => {
 };
 
 export default Main;
+
+const Error = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  // timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  },
+});
