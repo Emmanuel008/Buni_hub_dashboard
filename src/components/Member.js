@@ -8,6 +8,7 @@ import Highlighter from "react-highlight-words";
 import { DeleteFilled, EditFilled, SearchOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import EditMember from "./EditMember";
+import {urlDev} from "../utils/API"
 
 const Member = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -24,7 +25,7 @@ const Member = () => {
       try {
         setLoading(true);
         await axios
-          .get(`http://localhost:8081/api/member/getAllMember`)
+          .get(`${urlDev}/api/member/getAllMember`)
           .then((res) => {
             console.log(res);
             setLoading(false);
@@ -139,7 +140,7 @@ const Member = () => {
 
   const Delete = async(row) =>{
     try {
-      await axios.delete(`http://localhost:8081/api/member/deleteMember/${row.membership_id}`)
+      await axios.delete(`${urlDev}/api/member/deleteMember/${row.membership_id}`)
       .then((res)=>{
         setData(res.data.remainingMembers);
         Success.fire({

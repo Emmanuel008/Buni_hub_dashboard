@@ -6,6 +6,7 @@ import { Button, Input, Space, Table } from "antd";
 import Highlighter from "react-highlight-words";
 import {SearchOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
+import {urlDev} from "../utils/API"
 
 
 const AttendanceLogs = () => {
@@ -21,11 +22,12 @@ const AttendanceLogs = () => {
       try {
         setLoading(true);
         await axios
-          .get(`http://localhost:8081/api/member/getAllMemberAttendance`)
+          .get(`${urlDev}/api/member/getAllMemberAttendance`)
           .then((res) => {
-            console.log(res.data.attendances);
+            console.log(res);
             setLoading(false);
-            setData(res.data.attendances.map(d=> d.member));
+            setData(res.data.attendanceWithlocalTime
+              );
           });
       } catch (error) {
         Error.fire({
@@ -161,10 +163,10 @@ const AttendanceLogs = () => {
     },
     {
       title: "Time",
-      dataIndex: "createdAt",
-      key: "createdAt",
+      dataIndex: "time",
+      key: "time",
       width: "20%",
-      ...getColumnSearchProps("createdAt"),
+      ...getColumnSearchProps("time"),
     },
   ];
   return (
@@ -195,7 +197,7 @@ const AttendanceLogs = () => {
             <div className="col-12">
               <div className="card">
                 <div className="card-body">
-                  <Table columns={columns} dataSource={data}/>
+                  <Table columns={columns} dataSource={data} loading= {loading}/>
                 </div>
               </div>
             </div>

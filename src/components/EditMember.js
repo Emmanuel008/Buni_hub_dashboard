@@ -2,6 +2,8 @@ import React,{useState} from 'react'
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {urlDev} from "../utils/API"
+
 
 const EditMember = (props) => {
     console.log(props && props.data)
@@ -28,7 +30,7 @@ const EditMember = (props) => {
        e.preventDefault();
           try {
            await axios.put(
-             `http://localhost:8081/api/member/updateMember/${props.data.membership_id}`, formData
+             `${urlDev}/api/member/updateMember/${props.data.membership_id}`, formData
            ).then((res)=>{
                setFormChanged(false);
                props.setEditModal(false)

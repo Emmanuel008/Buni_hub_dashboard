@@ -2,6 +2,9 @@ import React from "react";
 import TimePicker from "react-time-picker";
 import axios from "axios"
 import Swal from "sweetalert2";
+import {urlDev} from "../utils/API"
+
+
 const SignTime = () => {
   const [value, onChange] = React.useState (new Date());
   const handleChange = (value) => {
@@ -11,7 +14,7 @@ const SignTime = () => {
     e.preventDefault();
     try {
       await axios
-        .post("http://localhost:8081/api/time/createtime", {
+        .post(`${urlDev}/api/time/createtime`, {
           signInTime: value,
         })
         .then((res) => {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {urlDev} from "../utils/API"
 
 const AddMember = (props) => {
 
@@ -20,7 +21,7 @@ const AddMember = (props) => {
     try {
       props.setLoading(true)
       await axios
-        .post("http://localhost:8081/api/member/createMember", {
+        .post(`${urlDev}/api/member/createMember`, {
           first_name,
           last_name,
           email,

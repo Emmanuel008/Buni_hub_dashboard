@@ -6,8 +6,10 @@ import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { urlDev } from "../utils/API";
 
 const Visitor = () => {
+  console.log(urlDev)
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   useEffect(() => {
@@ -15,7 +17,7 @@ const Visitor = () => {
       try {
         setLoading(true);
         await axios
-          .get(`http://localhost:8081/api/visitor/getAllVisitor`)
+          .get(`${urlDev}/api/visitor/getAllVisitor`)
           .then((res) => {
             console.log(res);
             setLoading(false);

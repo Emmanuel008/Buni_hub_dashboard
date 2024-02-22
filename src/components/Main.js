@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {urlDev} from "../utils/API"
 
 
 const Main = () => {
@@ -12,7 +13,7 @@ const Main = () => {
     const fetch = async () =>{
       try {
         await axios
-          .get("http://localhost:8081/api/member/getNumber")
+          .get(`${urlDev}/api/member/getNumber`)
           .then((res) => {
             setMemberNumber(res.data)
           });
@@ -30,7 +31,7 @@ const Main = () => {
     const fetch = async () => {
       try {
         await axios
-          .get("http://localhost:8081/api/visitor/getNumber")
+          .get(`${urlDev}/api/visitor/getNumber`)
           .then((res) => {
             setVistorNumber(res.data)
           });
@@ -79,7 +80,7 @@ const Main = () => {
               <div className="small-box bg-warning">
                 <div className="inner">
                   <h3>{visitorNumber}</h3>
-                  <p>VISTORS TODAY</p>
+                  <p>VISITORS TODAY</p>
                 </div>
                 <div className="icon">
                   <i className="ion ion-person-add" />
